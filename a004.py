@@ -6,4 +6,4 @@ while True:
         break
     lines.append(aLine)
 print(lines)
-## ok
+## not ok
