@@ -1,7 +1,7 @@
-t = int(input())
+t = int(input("how many series: "))
 for i in range(t):
     # https://www.geeksforgeeks.org/python-get-a-list-as-input-from-user/
-    l = list(map(int,input()))
+    l = list(map(int,input("\nseries : ").strip().split()))
     d = l[3]-l[2]
     m = l[3]/l[2]
     # 如果是等差，那越後面的相鄰數值，越不可能整除，所以藉由判別是不是整除，來確定等比還是等差
