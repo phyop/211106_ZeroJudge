@@ -1,7 +1,7 @@
 import math
 
-# cin = 100000000
-cin = int(input())
+# cin = 2147483647
+cin = 67483647
 # 質數範圍：2~sqrt(cin) 
 ls = [2]
 mid = int(math.sqrt(cin))
@@ -16,12 +16,15 @@ while ls[order_of_prime]*2 < mid:
         if ls[order_of_prime]*i in ls:
             ls.remove(ls[order_of_prime]*i)  
     order_of_prime += 1
+# print(len(ls))
+# 1000以內的質數有168個
 
-# 對cin質因數分解
-
-
-# //判斷要不要印出”*”， 次方=1就不用印"^"了
-# print(str(s)+'^'+str(n),end='') 輸出時記得設print()為不要換行
-# 20 -> 2^2 * 5
-# 17 -> 17
-# 999997 -> 757 * 1321
+while True:
+    try:
+        cin_real = int(input())
+        if cin_real in ls:
+            print("質數")
+        else:
+            print("非質數")
+    except:
+        break
