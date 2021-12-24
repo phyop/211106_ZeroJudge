@@ -1,7 +1,35 @@
-# 加法組合
-dic_p = {I:1,V:5,X:10,L:50,C:100,D:500,M:1000}
 # 減法組合只有六種情況：
-dic_m = {IV:4,IX:9,XL:40,XC:90,CD:400,CM:900}
+dic_m = {'IV':4,'IX':9,'XL':40,'XC':90,'CD':400,'CM':900}
+# 加法組合
+dic_p = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+
+def combi2(s):
+    for i in range(len(s)-1):
+        combine = s[i]+s[i+1]
+        if combine in dic_m.keys():
+            pass
+
+def ro2nu(s1,s2):
+    """ I I -> 0; MM II -> 1998 """
+    if s1 == s2:
+        return 'ZERO'
+    
+        
+
+def nu2ro(num):
+    """ 0 -> ZERO, 1998 -> MCMXCVIII """
+    pass
+
+
+while input() != '#':
+    try:
+        s1,s2 = input().split()
+        nu = ro2nu(s1,s2) # number after minus
+        ro = nu2ro(nu)
+        print(ro)
+    except:
+        break
+
 
 """
 右邊較小，表示右加。
