@@ -1,21 +1,22 @@
 import math
 
-cin = 10000
+cin = 100
 ls = []
-# 建構質數範圍列表，質數範圍：2~cin
-for i in range(2, cin+1):
+# 建構質 「因數」 範圍列表，質數範圍：2~sqrt(cin)
+middle = int(math.sqrt(cin))
+for i in range(2, middle+1):
     ls.append(i)
-# 找第一個未被刪掉的數字n=ls[0]，刪除其倍數，i.e 2~cin//n倍
-# 找下一個數字ls[0 + count]，刪除其倍數，i.e 2~cin//ls[0 + count]倍
+# 找第一個未被刪掉的數字n=ls[0]，刪除其倍數，i.e 2~middle//n倍
+# 找下一個數字ls[0 + count]，刪除其倍數，i.e 2~middle//ls[0 + count]倍
 # 直到ls[-1]
 order_of_prime = 0
 while ls[order_of_prime] != ls[-1]: # 直到ls[-1]
-    for i in range(2,cin//ls[order_of_prime]+1): # 2~cin//n倍
+    for i in range(2, middle//ls[order_of_prime]+1): # 2~middle//n倍
         if ls[order_of_prime]*i in ls: # 刪除其倍數
             ls.remove(ls[order_of_prime]*i)  
     order_of_prime += 1 
 
-cin_real = int(input())
+cin_real = int(input('num: '))
 # 找cin質因數
 factor = []
 for i in range(len(ls)):
@@ -27,12 +28,12 @@ for i in range(len(factor)):
     while cin_real % factor[i] == 0:
         cin_real //= factor[i]
         power += 1
-    if power = 0:
+    if power == 0:
         continue
-    elif power = 1:
-        print(str(ls[i]),end='')
+    elif power == 1:
+        print(ls[i],end='')
     else:
-        print(str(ls[i])+'^'+str(power),end='')
+        print(ls[i]+'^'+str(power),end='')
     if i+1 != len(factor):
         print(' * ')
 print()
