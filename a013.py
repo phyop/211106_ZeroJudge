@@ -3,18 +3,27 @@ dic_m = {'IV':4,'IX':9,'XL':40,'XC':90,'CD':400,'CM':900}
 # 加法組合
 dic_p = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
 
-def combi2(s):
-    for i in range(len(s)-1):
-        combine = s[i]+s[i+1]
-        if combine in dic_m.keys():
-            pass
-
-def ro2nu(s1,s2):
+def ro2nu(s):
     """ I I -> 0; MM II -> 1998 """
     if s1 == s2:
         return 'ZERO'
+    value = 0
+    ls = [i for i in range(len(s))]
+    i = 0
+    while i in ls:
+        combine = s[i]+s[i+1]
+        if combine in dic_m.keys():
+            value += dic_m[combine]
+            i += 1
+        else:
+            value += dic_p[s[i]]
+        if i < len(s)
+            i += 1
+    return value
+
+def ro_minus(s1,s2):
+
     
-        
 
 def nu2ro(num):
     """ 0 -> ZERO, 1998 -> MCMXCVIII """
@@ -60,3 +69,10 @@ I(1)，V(5)，X(10)，L(50)，C(100)，D(500)，M(1000)
 -> M 先給大於value的最小rome；如果沒有value大於最大rome，則給最大rome(M)
 -> MM 判斷當前rome與value的差距（2）,尋找
 """
+
+# number_list = [i for i in range(1, 6)]
+# # [1, 2, 3, 4, 5]
+# my_fruit = [“test %s” % fruit for fruit in fruit_list]
+# # [‘test apple’, ‘test orange’, ‘test banana’, ‘test kiwi’]
+# get_number = [num for num in number_list if num > 8]
+# # [9, 8.2, 9.1, 10]
