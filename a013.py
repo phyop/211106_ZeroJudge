@@ -4,25 +4,28 @@ dic_m = {'IV':4,'IX':9,'XL':40,'XC':90,'CD':400,'CM':900}
 dic_p = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
 
 def ro2nu(s):
-    """ I I -> 0; MM II -> 1998 """
-    if s1 == s2:
-        return 'ZERO'
     value = 0
     ls = [i for i in range(len(s))]
     i = 0
     while i in ls:
-        combine = s[i]+s[i+1]
+        # python中for中修改i只会对当前这次的循环体有效，但while可以
+        if i == ls[-1]:
+            value += dic_p[s[-1]]    
+            break
+        # 因為i+1會超過index，所以在這之前先設一個條件做break
+        combine = s[i]+s[i+1] 
         if combine in dic_m.keys():
             value += dic_m[combine]
-            i += 1
+            i += 2
         else:
             value += dic_p[s[i]]
-        if i < len(s)
             i += 1
     return value
 
 def ro_minus(s1,s2):
-
+     """ I I -> 0; MM II -> 1998 """
+    if s1 == s2:
+        return 'ZERO'
     
 
 def nu2ro(num):
