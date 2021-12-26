@@ -1,8 +1,3 @@
-# 減法組合只有六種情況：
-dic_m = {'IV':4,'IX':9,'XL':40,'XC':90,'CD':400,'CM':900}
-# 加法組合
-dic_p = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
-
 def ro2nu(s):
     value = 0
     ls = [i for i in range(len(s))]
@@ -22,23 +17,36 @@ def ro2nu(s):
             i += 1
     return value
 
-def ro_minus(s1,s2):
-     """ I I -> 0; MM II -> 1998 """
-    if s1 == s2:
+
+def nu2ro(n):
+    if n == 0:
         return 'ZERO'
     
 
-def nu2ro(num):
-    """ 0 -> ZERO, 1998 -> MCMXCVIII """
-    pass
+def dic2ls(dic):
+    dic = {**dic_m, **dic_p}
+    dic_rv = {v: k for k, v in dic.items()}
+    vals = sorted(list(dic_rv.keys()),reverse=True)
 
+    n = 1998
+    s = ''
+    for val in vals:
+        cha = dic_rv[val]
+        mul =  n // val
+        if mul != 0:
+            n -= mul * val
+            s = ''.join(s,cha*n)
+
+# MCMXCVIII 1998
+# 減法組合只有六種情況：
+dic_m = {'IV':4,'IX':9,'XL':40,'XC':90,'CD':400,'CM':900}
+# 加法組合
+dic_p = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
 
 while input() != '#':
     try:
         s1,s2 = input().split()
-        nu = ro2nu(s1,s2) # number after minus
-        ro = nu2ro(nu)
-        print(ro)
+        print(nu2ro(abs(ro2nu(s1),ro2nu(s2))))
     except:
         break
 
@@ -61,16 +69,22 @@ https://ppfocus.com/0/fa55b9db2.html
 
 罗马数字转换工具:
 https://zh.romannumerals.guide/MCMXCVIII
+MCMXCVIII 1998
+MMMDLXXIX 3579
+
 
 I I -> (1) - (1) -> ZERO
 MM II -> (1000+1000) - (1+1) -> MCMXCVIII 
 I(1)，V(5)，X(10)，L(50)，C(100)，D(500)，M(1000)
 (1+1+1+5+100-10+1000-100+1000) = 1998 -> +++++-+-+ -> 111110101
 (1000-100+1000-10+100+5+1+1+1) = 1998 -> +-+-+++++ -> 101011111
-
 1998
 -> M 先給大於value的最小rome；如果沒有value大於最大rome，則給最大rome(M)
--> MM 判斷當前rome與value的差距（2）,尋找
+
+數字轉羅馬數字就是不斷地除以整數，然後檢查餘下的數的大小即可，
+按照人腦進行數字轉羅馬數字的操作即可，先看有幾個1000，
+在看剩下的是不是900，在看是不是大於500，在看剩下的夠不夠400，
+依次類推，寫成順序執行即可。
 """
 
 # number_list = [i for i in range(1, 6)]
@@ -79,3 +93,5 @@ I(1)，V(5)，X(10)，L(50)，C(100)，D(500)，M(1000)
 # # [‘test apple’, ‘test orange’, ‘test banana’, ‘test kiwi’]
 # get_number = [num for num in number_list if num > 8]
 # # [9, 8.2, 9.1, 10]
+# 反转字典 dict(zip(d.values(), d.keys()))
+# {v: k for k, v in d.items()}
