@@ -19,23 +19,28 @@ def ro2nu(s):
 
 
 def nu2ro(n):
-    if n == 0:
-        return 'ZERO'
-    
+    dic_ro = {**dic_m, **dic_p}
+    dic_vl = {v: k for k, v in dic_ro.items()}
+    vals = sorted(list(dic_vl.keys()),reverse=True)
+    # [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
 
-def dic2ls(dic):
-    dic = {**dic_m, **dic_p}
-    dic_rv = {v: k for k, v in dic.items()}
-    vals = sorted(list(dic_rv.keys()),reverse=True)
-
-    n = 1998
-    s = ''
+    chas = ''
     for val in vals:
-        cha = dic_rv[val]
+        cha = dic_vl[val]
         mul =  n // val
         if mul != 0:
+            chas += cha*mul
             n -= mul * val
-            s = ''.join(s,cha*n)
+    return chas
+
+
+def ro2nu_minus(s1,s2):
+    if s1 == s2:
+        return 'ZERO'
+    else:
+        return nu2ro(abs(ro2nu(s1) - ro2nu(s2)))
+     
+
 
 # MCMXCVIII 1998
 # 減法組合只有六種情況：
@@ -43,10 +48,13 @@ dic_m = {'IV':4,'IX':9,'XL':40,'XC':90,'CD':400,'CM':900}
 # 加法組合
 dic_p = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
 
-while input() != '#':
+while True:
     try:
-        s1,s2 = input().split()
-        print(nu2ro(abs(ro2nu(s1),ro2nu(s2))))
+        cin = input()
+        if cin == '#':
+            break
+        s1,s2 = cin.split()
+        print(ro2nu_minus(s1,s2))
     except:
         break
 
