@@ -9,10 +9,10 @@ for i in range(m):
 array = np.array(row)
 
 zero_arr = np.zeros((n,m))
-for i in range(m):
-    for j in range(n):
+for i in range(n):
+    for j in range(m):
         zero_arr[i][j] = array[j][i]
-print(array)
+print(zero_arr)
 
 # [None] * 10
 # [None for _ in range(10)]
